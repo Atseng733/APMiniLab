@@ -206,5 +206,36 @@ public class CircleQueue
     
   } 
   
+  public void selectionSort() {
+	  LinkedList node1 = headNode;
+	  LinkedList node2 = (node1 == null) ? null : node1.getNext();
+	  
+	  while (node2 != null) {
+		  LinkedList slot1 = node1;
+		  LinkedList slot2 = node2;
+		  
+		  LinkedList key = node2;
+		  String keyText = node2.getObject().toString();
+		  
+		  LinkedList minKey = node1;
+		  String minKeyText = minKey.getObject().toString();
+		  
+		  while (slot2 != null) {
+			  if(minKeyText.compareTo(slot2.getObject().toString()) > 0) {
+				  minKey = slot2;
+				  minKeyText = slot2.getObject().toString();
+			  }
+			  slot2 = slot2.getNext();
+		  }
+		  
+		  slot2 = minKey;
+		  slot2.setObject(keyText);
+		  
+		  slot1.setObject(minKeyText);
+		  
+		  node1 = node1.getNext();
+		  node2 = node2.getNext();
+	  }
+  }  
 }
 
