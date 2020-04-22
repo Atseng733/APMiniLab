@@ -13,7 +13,7 @@ public class Sorts
     private int[] list;
     private int[] blist; int bcompares = 0; int bswaps = 0;
     private int[] ilist; int icompares = 0; int iswaps = 0;
-    private int[] slist;
+    private int[] slist; int scompares = 0; int sswaps = 0;
 
     /**
      * Constructor for objects of class isort
@@ -56,15 +56,18 @@ public class Sorts
                 list = this.ilist;
                 break;
             case Select:
-            	System.out.println("Selection Sort -- ");
+            	System.out.println("Selection Sort -- "
+            	  + " Operations: " + (this.scompares + this.sswaps)
+            	  + " Compares: " + this.scompares
+            	  + " Swaps: " + this.sswaps);
             	list = this.slist;
             	break;
             default:
             	System.out.println("Insertions Sort -- "
-                        + " Operations: " + (this.icompares + this.iswaps)
-                        + " Compares: " + this.icompares
-                        + " Swaps: " + this.iswaps);
-                      list = this.ilist;
+                  + " Operations: " + (this.icompares + this.iswaps)
+                  + " Compares: " + this.icompares
+                  + " Swaps: " + this.iswaps);
+                list = this.ilist;
             	
         }
                 
@@ -137,11 +140,15 @@ public class Sorts
     			if(slist[k] < slist[min_id]) {
     				min_id = k;
     			}
+    			scompares++;
     		}
     		
-    		int temp = slist[i];
-    		slist[i] = slist[min_id];
-    		slist[min_id] = temp;
+    		if(i != min_id) {
+        		int temp = slist[i];
+        		slist[i] = slist[min_id];
+        		slist[min_id] = temp;
+        		sswaps++;
+    		}
     	}
     	
     	return slist;
