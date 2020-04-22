@@ -7,12 +7,13 @@
  */
 public class Sorts
 {
-    enum ListType {Standard, Bubble, Insert};
+    enum ListType {Standard, Bubble, Insert, Select};
     ListType listType = ListType.Standard;
     
     private int[] list;
     private int[] blist; int bcompares = 0; int bswaps = 0;
     private int[] ilist; int icompares = 0; int iswaps = 0;
+    private int[] slist;
 
     /**
      * Constructor for objects of class isort
@@ -28,6 +29,8 @@ public class Sorts
         this.BubbleSort();
         ilist = list.clone();
         this.InsertionSort();
+        slist = list.clone();
+        this.SelectionSort();
     }
     
     public String toString() {
@@ -46,12 +49,23 @@ public class Sorts
                 list = this.blist;
                 break;
             case Insert:
-            default:
                 System.out.println("Insertions Sort -- "
                   + " Operations: " + (this.icompares + this.iswaps)
                   + " Compares: " + this.icompares
                   + " Swaps: " + this.iswaps);
                 list = this.ilist;
+                break;
+            case Select:
+            	System.out.println("Selection Sort -- ");
+            	list = this.slist;
+            	break;
+            default:
+            	System.out.println("Insertions Sort -- "
+                        + " Operations: " + (this.icompares + this.iswaps)
+                        + " Compares: " + this.icompares
+                        + " Swaps: " + this.iswaps);
+                      list = this.ilist;
+            	
         }
                 
         String output = "[";
@@ -112,6 +126,26 @@ public class Sorts
         
         return ilist;
     }
+    
+    private int[] SelectionSort() {
+    	int i; int k;
+    	
+    	for(i = 0; i < slist.length - 1; i++) {
+    		int min_id = i;
+    		
+    		for(k = i + 1; k < slist.length; k++) {
+    			if(slist[k] < slist[min_id]) {
+    				min_id = k;
+    			}
+    		}
+    		
+    		int temp = slist[i];
+    		slist[i] = slist[min_id];
+    		slist[min_id] = temp;
+    	}
+    	
+    	return slist;
+    }
 
     /**
      *
@@ -128,6 +162,9 @@ public class Sorts
         
         // Insertion Sort
         is.listType = ListType.Insert;
+        System.out.println(is);
+        
+        is.listType = ListType.Select;
         System.out.println(is);
     }
 }
