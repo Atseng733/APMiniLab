@@ -24,6 +24,13 @@ public class CircleQueue
     currentNode = null;
   }
   
+  public CircleQueue(CircleQueue cQueue)
+  {
+	  headNode = cQueue.headNode;
+	  tailNode = cQueue.tailNode;
+	  currentNode = cQueue.currentNode;
+  }
+  
   /**
    *  Returns the head opaqueObject.
    *
