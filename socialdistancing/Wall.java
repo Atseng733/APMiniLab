@@ -9,6 +9,15 @@ public class Wall extends Obstacle{
     protected Image image;
     protected boolean vertical;
 
+    public Wall() {
+    	x = (int)(Math.random()*Settings.sXExt);
+    	y = (int)(Math.random()*Settings.sYExt);
+    	visible = true;
+    	vertical = true;
+    	loadImage("SocialDistancingImages/wall2.png");
+    	getImageDimensions();
+    }
+    
     public Wall(int x, int y, String imageS, boolean vertical) {
 
         this.x = x;
