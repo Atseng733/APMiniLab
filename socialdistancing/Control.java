@@ -172,7 +172,7 @@ public class Control {
 			}
 		}
 		
-		public void paintwall(Graphics g) {
+		public void paintWalls(Graphics g) {
 			for(Wall e: ob) {
 				g.drawImage(e.getImage(), e.getX(), e.getY(), view);
 			}
