@@ -133,60 +133,8 @@ public class Control {
 		 * Call Back method for View
 		 * paints/repaints model of graphic objects repressing person objects in the frame 
 		 */
-		public void paintPersons(Graphics g) {
-			
-			//find the Person in the Model!
-			int index = 0;
-			for(Person pDot1: model) {
-				for(Person pDot2: model) {
-					//for each unique pair invoke the collision detection code
-					pDot1.collisionDetector(pDot2);
-				}
-				personToWallCollision(pDot1);
-				pDot1.healthManager(); //manage health values of the Person
-				pDot1.velocityManager(); //manage social distancing and/or roaming values of the Person
-				
-				//set the color of the for the person oval based on the health status of person object
-				switch(pDot1.state) {
-					case candidate:
-						g.setColor(Color.LIGHT_GRAY);
-						break;
-					case infected:
-						g.setColor(Color.red);
-						break;
-					case recovered:
-						g.setColor(Color.green);
-						break;
-					case died:
-						g.setColor(Color.black);
-						
-				}
-				
-				//draw the person oval in the simulation frame
-				g.fillOval(pDot1.x, pDot1.y, OvalW, OvalH);
-				
-				// draw the person oval in meter/bar indicator
-				g.fillOval((frameX-(int)(frameX*.02)), (int)(frameY-((numPeople-index)*OvalH)/1.67), OvalW, OvalH);
-				index++;
-				
-			}
-		}
 		
-		public void paintWalls(Graphics g) {
-			for(Wall e: ob) {
-				g.drawImage(e.getImage(), e.getX(), e.getY(), view);
-			}
-			//sets text color
-			g.setColor(Color.BLACK);
-			g.setFont(new Font("Roboto", Font.BOLD, 20));
-			
-			g.drawString("Sprouts", 610, 50);
-			g.drawString("Scripps Medical", 5, 50);
-			g.drawString("Board and Brew", 5, 440);
-			g.drawString("Mr. M's House", 590, 440);
-		}
 		
-
 		public void personToWallCollision(Person p) {
 			
 			Rectangle personRect = new Rectangle(p.x,p.y, p.width, p.height);
@@ -201,5 +149,6 @@ public class Control {
 						p.vy *= -1;
 			}
 		}
+		
 		
 }
